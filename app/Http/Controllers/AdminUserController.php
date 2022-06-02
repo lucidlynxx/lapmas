@@ -18,7 +18,7 @@ class AdminUserController extends Controller
         return view('dashboard.users.index', [
             'author' => 'Dzaky Syahrizal',
             'title' => "Users",
-            'users' => User::latest()->get()
+            'users' => User::latest()->get()->whereNotIn('id', 6)
         ]);
     }
 
