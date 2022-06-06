@@ -39,7 +39,7 @@
                         <h6 class="collapse-header">Data Lists :</h6>
                         <a class="collapse-item" href="/dashboard/reports">Reports</a>
                         @can('admin')
-                        <a class="collapse-item" href="/dashboard/users">Users <span class="text-muted">(administrator)</span></a>
+                        <a class="collapse-item" href="/dashboard/users">Users <span class="text-muted">(Admin)</span></a>
                         @endcan
                     </div>
                 </div>

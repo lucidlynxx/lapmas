@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LaporController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PrintPDFController;
@@ -52,5 +53,7 @@ Route::get('/print/{report:slug}', [PrintPDFController::class, 'index'])->middle
 
 Route::resource('/dashboard/users', AdminUserController::class)->except('show', 'edit', 'create', 'update', 'store', 'destroy')->middleware('is_admin');
 
+Route::get('/dashboard/profile/{user:name}/edit', [UserController::class, 'index'])->middleware('auth');
+Route::post('/dashboard/profile/{user:name}', [UserController::class, 'update'])->middleware('auth');
 
 Route::get('/dashboard/report/makeSlug', [DashboardReportController::class, 'makeSlug'])->middleware('auth');

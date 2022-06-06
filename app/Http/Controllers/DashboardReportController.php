@@ -102,7 +102,7 @@ class DashboardReportController extends Controller
             }
             return view('dashboard.404', [
                 'author' => 'Dzaky Syahrizal',
-                "title" => "Report"
+                "title" => "Not Found"
             ]);
         }
 
