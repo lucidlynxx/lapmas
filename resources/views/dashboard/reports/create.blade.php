@@ -158,8 +158,8 @@
                 </div>
               </div>
             </form>
-      </div>
     </div>
+</div>
 <script>
   const title = document.querySelector('#title');
   const slug = document.querySelector('#slug');

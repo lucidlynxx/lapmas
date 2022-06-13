@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Classification;
 use App\Models\Report;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Storage;
@@ -22,14 +23,16 @@ class DashboardReportController extends Controller
             return view('dashboard.reports.index', [
                 'author' => 'Dzaky Syahrizal',
                 'title' => "Reports",
-                'reports' => Report::latest()->get()
+                'reports' => Report::latest()->get(),
+                'jmlPemberitahuan' => Message::get()->where('status', 'belum dibaca')->count()
             ]);
         }
 
         return view('dashboard.reports.index', [
             'author' => 'Dzaky Syahrizal',
             'title' => "Reports",
-            'reports' => Report::where('user_id', auth()->user()->id)->latest()->get()
+            'reports' => Report::where('user_id', auth()->user()->id)->latest()->get(),
+            'jmlPemberitahuan' => Message::get()->where('user_id', auth()->user()->id)->where('status', 'belum dibaca')->count()
         ]);
     }
 
@@ -45,9 +48,15 @@ class DashboardReportController extends Controller
             return view('dashboard.reports.create', [
                 'author' => 'Dzaky Syahrizal',
                 'title' => "Create New Report",
-                'class' => Classification::all()
+                'class' => Classification::all(),
+                'jmlPemberitahuan' => Message::get()->where('user_id', auth()->user()->id)->where('status', 'belum dibaca')->count()
             ]);
         }
+
+        return view('dashboard.404', [
+            'author' => 'Dzaky Syahrizal',
+            "title" => "Not Found"
+        ]);
     }
 
     /**
@@ -97,19 +106,22 @@ class DashboardReportController extends Controller
                 return view('dashboard.reports.show', [
                     'author' => 'Dzaky Syahrizal',
                     "title" => "Report",
-                    "report" => $report
+                    "report" => $report,
+                    'jmlPemberitahuan' => Message::get()->where('status', 'belum dibaca')->count()
                 ]);
             }
             return view('dashboard.404', [
                 'author' => 'Dzaky Syahrizal',
-                "title" => "Report"
+                "title" => "Not Found",
+                'jmlPemberitahuan' => Message::get()->where('user_id', auth()->user()->id)->where('status', 'belum dibaca')->count()
             ]);
         }
 
         return view('dashboard.reports.show', [
             'author' => 'Dzaky Syahrizal',
             "title" => "Report",
-            "report" => $report
+            "report" => $report,
+            'jmlPemberitahuan' => Message::get()->where('user_id', auth()->user()->id)->where('status', 'belum dibaca')->count()
         ]);
     }
 
@@ -125,9 +137,15 @@ class DashboardReportController extends Controller
             return view('dashboard.reports.edit', [
                 'author' => 'Dzaky Syahrizal',
                 "title" => "Report",
-                "report" => $report
+                "report" => $report,
+                'jmlPemberitahuan' => Message::get()->where('user_id', auth()->user()->id)->where('status', 'belum dibaca')->count()
             ]);
         }
+
+        return view('dashboard.404', [
+            'author' => 'Dzaky Syahrizal',
+            "title" => "Not Found"
+        ]);
     }
 
     /**

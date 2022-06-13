@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LaporController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PrintPDFController;
@@ -8,6 +9,8 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardReportController;
+use App\Http\Controllers\MessageController;
+use App\Models\Message;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +29,7 @@ Route::get('/', function () {
         'title' => 'Home'
     ]);
 });
+
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
@@ -52,5 +56,11 @@ Route::get('/print/{report:slug}', [PrintPDFController::class, 'index'])->middle
 
 Route::resource('/dashboard/users', AdminUserController::class)->except('show', 'edit', 'create', 'update', 'store', 'destroy')->middleware('is_admin');
 
+Route::get('/dashboard/profile/{user:name}/edit', [UserController::class, 'index'])->middleware('auth');
+Route::post('/dashboard/profile/{user:name}', [UserController::class, 'update'])->middleware('auth');
+
+Route::resource('/dashboard/messages', MessageController::class)->except('destroy')->middleware('auth');
 
 Route::get('/dashboard/report/makeSlug', [DashboardReportController::class, 'makeSlug'])->middleware('auth');
+
+Route::get('/dashboard/message/makeSlug2', [MessageController::class, 'makeSlug2'])->middleware('auth');

@@ -32,18 +32,48 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Master</span>
+                    <span>Data Utama</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Data Lists :</h6>
-                        <a class="collapse-item" href="/dashboard/reports">Reports</a>
+                        <h6 class="collapse-header">Daftar Data :</h6>
+                        <a class="collapse-item" href="/dashboard/reports">Laporan</a>
                         @can('admin')
-                        <a class="collapse-item" href="/dashboard/users">Users <span class="text-muted">(administrator)</span></a>
+                        <a class="collapse-item" href="/dashboard/users">Akun <span class="text-muted">(Admin)</span></a>
                         @endcan
                     </div>
                 </div>
             </li>
+
+            @can('admin')
+                @if ($jmlPemberitahuan == 0)
+                <li class="nav-item {{ Request::is('dashboard/messages*') ? 'active' : '' }}">
+                    <a class="nav-link" href="/dashboard/messages">
+                    <i class="fas fa-envelope fa-fw"></i>
+                    <span>Pemberitahuan</span></a>
+                </li>
+                @else
+                <li class="nav-item {{ Request::is('dashboard/messages*') ? 'active' : '' }}">
+                    <a class="nav-link" href="/dashboard/messages">
+                    <i class="fas fa-envelope fa-fw"></i>
+                    <span>Pemberitahuan </span><span class="badge badge-danger badge-pill" style="font-size: 75%">{{ $jmlPemberitahuan }}</span></a>
+                </li>
+                @endif
+            @else
+                @if ($jmlPemberitahuan == 0)
+                <li class="nav-item {{ Request::is('dashboard/messages*') ? 'active' : '' }}">
+                    <a class="nav-link" href="/dashboard/messages">
+                    <i class="fas fa-envelope fa-fw"></i>
+                    <span>Pesan Pemberitahuan</span></a>
+                </li>
+                @else
+                <li class="nav-item {{ Request::is('dashboard/messages*') ? 'active' : '' }}">
+                    <a class="nav-link" href="/dashboard/messages">
+                    <i class="fas fa-envelope fa-fw"></i>
+                    <span>Pesan Pemberitahuan </span><span class="badge badge-danger badge-pill" style="font-size: 75%">{{ $jmlPemberitahuan }}</span></a>
+                </li>
+                @endif
+            @endcan
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

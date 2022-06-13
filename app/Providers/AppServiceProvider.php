@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Message;
 use App\Models\Report;
 use Illuminate\Support\ServiceProvider;
 use App\Models\User;
@@ -32,6 +33,10 @@ class AppServiceProvider extends ServiceProvider
 
         Gate::define('view-report', function (User $user, Report $report) {
             return $user->id === $report->user_id;
+        });
+
+        Gate::define('view-message', function (User $user, Message $message) {
+            return $user->id === $message->user_id;
         });
     }
 }

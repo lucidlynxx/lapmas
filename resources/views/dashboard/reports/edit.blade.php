@@ -20,7 +20,7 @@
 
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Form Laporan Baru</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Edit Laporan</h6>
       </div>
       <div class="card-body">
         <form method="post" action="/dashboard/reports/{{ $report->slug }}" enctype="multipart/form-data">

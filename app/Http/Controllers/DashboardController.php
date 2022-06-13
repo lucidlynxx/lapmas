@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Report;
+use App\Models\Message;
 use Illuminate\Support\Facades\Gate;
 
 class DashboardController extends Controller
@@ -20,7 +21,8 @@ class DashboardController extends Controller
                 'aspirasi' => $dataUserAdmin->Where('classification_id', 2)->count(),
                 'permintaanInformasi' => $dataUserAdmin->Where('classification_id', 3)->count(),
                 'anonim' => $dataUserAdmin->Where('user_id', 6)->count(),
-                'totalLaporan' => $dataUserAdmin->count()
+                'totalLaporan' => $dataUserAdmin->count(),
+                'jmlPemberitahuan' => Message::get()->where('status', 'belum dibaca')->count()
             ]);
         }
 
@@ -32,7 +34,8 @@ class DashboardController extends Controller
             'pengaduan' => $dataUser->where('classification_id', 1)->count(),
             'aspirasi' => $dataUser->where('classification_id', 2)->count(),
             'permintaanInformasi' => $dataUser->where('classification_id', 3)->count(),
-            'totalLaporan' => $dataUser->count()
+            'totalLaporan' => $dataUser->count(),
+            'jmlPemberitahuan' => Message::get()->where('user_id', auth()->user()->id)->where('status', 'belum dibaca')->count()
         ]);
     }
 }
