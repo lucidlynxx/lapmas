@@ -95,6 +95,8 @@
     @stack('scripts1')
     @stack('scripts2')
     @stack('scripts3')
+    @stack('scripts4')
+    @stack('scripts5')
 </body>
 
 </html>

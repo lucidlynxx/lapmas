@@ -3,24 +3,39 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\Models\User;
+use App\Models\User;
+use App\Models\Message;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
     public function index(User $user)
     {
+        $messages = Message::get();
+
         if (auth()->user()->name !== $user->name) {
             return view('dashboard.404', [
                 'author' => 'Dzaky Syahrizal',
-                "title" => "Not Found"
+                "title" => "Not Found",
+                'jmlPemberitahuan' => $messages->where('user_id', auth()->user()->id)->where('status', 'belum dibaca')->count()
+            ]);
+        }
+
+        if (Gate::allows('admin')) {
+            return view('dashboard.users.profile', [
+                'author' => 'Dzaky Syahrizal',
+                'title' => "Users",
+                'user' => $user,
+                'jmlPemberitahuan' => $messages->where('status', 'belum dibaca')->count()
             ]);
         }
 
         return view('dashboard.users.profile', [
             'author' => 'Dzaky Syahrizal',
             'title' => "Users",
-            'user' => $user
+            'user' => $user,
+            'jmlPemberitahuan' => $messages->where('user_id', auth()->user()->id)->where('status', 'belum dibaca')->count()
         ]);
     }
 
@@ -36,6 +51,11 @@ class UserController extends Controller
 
         if (!Hash::check($validatedData['passwordLama'], $user->password)) {
             alert()->error('Ganti Password Gagal!', 'Silakan coba lagi.');
+            return back();
+        }
+
+        if (strcmp($validatedData['passwordLama'], $validatedData['password']) == 0) {
+            alert()->error('Silakan coba lagi', 'Password baru tidak boleh sama dengan password lama.');
             return back();
         }
 

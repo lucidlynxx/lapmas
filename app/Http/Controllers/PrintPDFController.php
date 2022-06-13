@@ -12,6 +12,7 @@ class PrintPDFController extends Controller
         $pdf = PDF::loadview('form.print_pdf', [
             'report' => $report
         ])->setPaper('a4', 'potrait');
+
         return $pdf->stream();
     }
 }

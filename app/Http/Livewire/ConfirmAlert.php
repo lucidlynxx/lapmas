@@ -25,6 +25,6 @@ class ConfirmAlert extends Component
 
         Report::find($reportId)->delete();
 
-        return redirect('/dashboard/reports');;
+        return redirect('/dashboard/reports');
     }
 }

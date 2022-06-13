@@ -41,7 +41,7 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ date('d-M-Y', strtotime($user->created_at)); }}</td>
-                            <td>
+                            <td class="d-flex justify-content-end">
                                 @livewire('user-alert', ['userId' => $user->id])
                             </td>
                         </tr>
