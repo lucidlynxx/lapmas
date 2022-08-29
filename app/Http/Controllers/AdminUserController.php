@@ -19,7 +19,7 @@ class AdminUserController extends Controller
         return view('dashboard.users.index', [
             'author' => 'Dzaky Syahrizal',
             'title' => "Users",
-            'users' => User::latest()->get()->whereNotIn('id', 6),
+            'users' => User::latest()->get(),
             'jmlPemberitahuan' => Message::get()->where('status', 'belum dibaca')->count()
         ]);
     }

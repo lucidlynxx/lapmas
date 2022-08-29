@@ -21,7 +21,9 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Created at</th>
+                            <th>NIK</th>
+                            <th>Alamat</th>
+                            <th>RT/RW</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -30,7 +32,9 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Created at</th>
+                            <th>NIK</th>
+                            <th>Alamat</th>
+                            <th>RT/RW</th>
                             <th>Aksi</th>
                         </tr>
                     </tfoot>
@@ -40,7 +44,9 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ date('d-M-Y', strtotime($user->created_at)); }}</td>
+                            <td>{{ $user->nik }}</td>
+                            <td>{{ $user->alamat }}</td>
+                            <td>{{ $user->rtrw }}</td>
                             <td class="d-flex justify-content-end">
                                 @livewire('user-alert', ['userId' => $user->id])
                             </td>

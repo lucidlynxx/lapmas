@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use App\Models\Report;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
@@ -50,6 +51,7 @@ class MessageController extends Controller
                 'title' => 'Buat Pemberitahuan',
                 'author' => 'Dzaky Syahrizal',
                 'users' => User::all()->whereNotIn('id', 6)->whereNotIn('IsAdmin', true),
+                'reports' => Report::all(),
                 'jmlPemberitahuan' => $messages->where('status', 'belum dibaca')->count()
             ]);
         }
@@ -72,7 +74,7 @@ class MessageController extends Controller
         if (Gate::allows('admin')) {
             $validatedData = $request->validate([
                 'user_id' => 'required',
-                'title' => 'required|max:255',
+                'report_id' => 'required|max:255',
                 'slug' => 'required|unique:messages',
                 'body' => 'required|min:25',
             ]);
@@ -137,6 +139,7 @@ class MessageController extends Controller
                 'author' => 'Dzaky Syahrizal',
                 "title" => "Report",
                 'users' => User::all()->whereNotIn('id', 6)->whereNotIn('IsAdmin', true),
+                'reports' => Report::all(),
                 "message" => $message,
                 'jmlPemberitahuan' => $messages->where('status', 'belum dibaca')->count()
             ]);
@@ -161,7 +164,7 @@ class MessageController extends Controller
         if (Gate::allows('admin')) {
             $rules = [
                 'user_id' => 'required',
-                'title' => 'required|max:255',
+                'report_id' => 'required|max:255',
                 'body' => 'required|min:25',
             ];
 

@@ -24,7 +24,7 @@ class ReportFactory extends Factory
             'body' => collect($this->faker->paragraphs(mt_rand(5, 10)))
                 ->map(fn ($p) => "<p>$p</p>")
                 ->implode(''),
-            'lokKejadian' => $this->faker->address(),
+            'lokKejadian' => $this->faker->streetAddress(),
             'Kategori' => $this->faker->words(3, true),
             'tglKejadian' => $this->faker->date('Y_m_d'),
             'image' => $this->faker->image(null, 640, 480),

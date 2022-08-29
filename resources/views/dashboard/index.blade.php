@@ -64,7 +64,7 @@
         </div>
     </div>
 
-    @can('admin')
+    {{-- @can('admin')
     <!-- Pending Requests Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-warning shadow h-100 py-2">
@@ -81,7 +81,7 @@
             </div>
         </div>
     </div>
-    @endcan
+    @endcan --}}
     </div>
     
     <div class="row">

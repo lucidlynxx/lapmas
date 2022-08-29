@@ -23,6 +23,9 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email:dns|unique:users',
             'password' => 'required|min:6|max:255|confirmed',
+            'nik' => 'required|unique:users|numeric|integer|digits:16',
+            'alamat' => 'required|max:255',
+            'rtrw' => 'required|max:255',
             'password_confirmation' => 'required|min:6|max:255'
         ]);
 

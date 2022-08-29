@@ -18,7 +18,7 @@
 <body>
     <div class="container">
       <div class="row">
-        <div class="col-lg-10 col-xl-9 mx-auto">
+        <div class="col-lg-10 col-xl-10 mx-auto">
           <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
             <div class="card-img-left d-none d-md-flex">
               <!-- Background image for card set in CSS! -->
@@ -48,31 +48,57 @@
                   </div>
                   @enderror
                 </div>
-  
-                <hr>
-  
-                <div class="form-floating mb-3">
-                  <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Password" required>
-                  <label for="password">Password</label>
-                  @error('password')
-                  <div class="invalid-feedback">
-                    {{ $message }}
-                  </div>
-                  @enderror
-                </div>
-  
-                <div class="form-floating mb-3">
-                  <input type="password" class="form-control @error('confirmPassword') is-invalid @enderror" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" required>
-                  <label for="password_confirmation">Confirm Password</label>
-                  @error('confirmPassword')
-                  <div class="invalid-feedback">
-                    {{ $message }}
-                  </div>
-                  @enderror
-                </div>
-  
-                <hr>
 
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control @error('nik') is-invalid @enderror" name="nik" id="nik" placeholder="NIK" required value="{{ old('nik') }}">
+                  <label for="nik">NIK</label>
+                  @error('nik')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>
+                  @enderror
+                </div>
+
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" id="alamat" placeholder="Alamat" required value="{{ old('alamat') }}">
+                  <label for="alamat">Alamat</label>
+                  @error('alamat')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>
+                  @enderror
+                </div>
+
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control @error('rtrw') is-invalid @enderror" name="rtrw" id="rtrw" placeholder="RT/RW" required value="{{ old('rtrw') }}">
+                  <label for="rtrw">RT/RW</label>
+                  @error('rtrw')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>
+                  @enderror
+                </div>
+  
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Password" required>
+                    <label for="password">Password</label>
+                    @error('password')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                    @enderror
+                  </div>
+
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control @error('confirmPassword') is-invalid @enderror" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" required>
+                    <label for="password_confirmation">Confirm Password</label>
+                    @error('confirmPassword')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                    @enderror
+                  </div>
+  
                 <div class="d-grid mb-2">
                   <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit">Register</button>
                 </div>

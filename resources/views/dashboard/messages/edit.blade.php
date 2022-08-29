@@ -29,11 +29,19 @@
                 @csrf
                     <div class="row">
                       <div class="col-md-6 mb-3">
-                        <label for="title">Judul Pemberitahuan</label>
-                        <input type="text" class="form-control @error('title')
+                        <label for="report_id">Balas Sesuai Judul laporan</label>
+                        <select class="custom-select @error('report_id')
                         is-invalid
-                        @enderror" id="title" name="title" value="{{ old('title', $message->title) }}" required>
-                        @error('title')
+                        @enderror" id="report_id" name="report_id" required>
+                        @foreach ($reports as $report)
+                            @if (old('report_id', $message->report_id) == $report->id)
+                                <option value="{{ $report->id }}" selected>{{ $report->title }}</option>
+                            @else
+                                <option value="{{ $report->id }}">{{ $report->title }}</option>
+                            @endif
+                        @endforeach
+                        </select>
+                        @error('report_id')
                         <div class="invalid-feedback">
                           {{ $message }}
                         </div>
@@ -86,7 +94,7 @@
     </div>
 </div>
 <script>
-  const title = document.querySelector('#title');
+  const title = document.querySelector('#report_id');
   const slug = document.querySelector('#slug');
 
   title.addEventListener('change', function() {

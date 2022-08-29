@@ -32,7 +32,8 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <h4>{{ $message->title }}</h4>
+                    <h4>{{ $message->report->title }}</h4>
+                    <h8>{{ $message->user->name }}</h8>
                     <h6>{{ date('d F Y', strtotime($message->created_at)); }}</h6>
                     {{ $message->body }}
                 </div>

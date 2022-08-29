@@ -7,7 +7,7 @@
   Silahkan sampaikan laporan Anda langsung kepada kami
 </p>
 <p class="lead">
-  <a href="/lapor/create" class="btn btn-lg btn-secondary fw-bold border-white bg-white"
+  <a href="/login" class="btn btn-lg btn-secondary fw-bold border-white bg-white"
     >LAPOR!</a>
 </p>
 @endsection

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('title');
+            $table->foreignId('report_id');
             $table->string('slug')->unique();
             $table->text('body');
             $table->enum('status', ['dibaca', 'belum dibaca'])->default('belum dibaca');

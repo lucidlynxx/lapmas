@@ -66,7 +66,7 @@
                         @if ($message->status == 'belum dibaca')
                         <tr class="table-danger">
                             <td>{{ $loop->iteration }}</td>
-                                <td>{{ $message->title }}</td>
+                                <td>{{ $message->report->title }}</td>
                                 @can('admin')
                                 <td>{{ $message->user->name }}</td>
                                 @endcan
@@ -91,7 +91,7 @@
                         @else
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $message->title }}</td>
+                                <td>{{ $message->report->title }}</td>
                                 @can('admin')
                                 <td>{{ $message->user->name }}</td>
                                 @endcan
