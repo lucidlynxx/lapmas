@@ -71,7 +71,7 @@
                   </div>
                   @enderror
                 </div>
-                  <input type="hidden" class="form-control" id="slug" name="slug" value="{{ old('title') }}" required>
+                  <input type="hidden" class="form-control" id="slug" name="slug" value="{{ old('slug') }}" required>
                 <div class="col-md-6 mb-3">
                   <label for="kategori">Kategori Laporan</label>
                   <select class="custom-select @error('Kategori')
